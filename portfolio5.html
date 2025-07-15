@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jasdip Singh Virdi | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f0f0f0;
+      --accent: #00ffff;
+      --accent2: #ff00ff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    body.light {
+      --bg: #fdfdfd;
+      --text: #111111;
+      --accent: #6c63ff;
+      --accent2: #ff4081;
+      --card-bg: rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    header {
+      position: relative;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(circle, #1c1c1c, #000);
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowText 2s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px var(--accent); }
+      to { text-shadow: 0 0 20px var(--accent2); }
+    }
+
+    .typing {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      height: 30px;
+      color: var(--text);
+    }
+
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      border: none;
+      color: black;
+      font-weight: bold;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    nav {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      left: 0;
+      bottom: -4px;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      bottom: -6px;
+      left: 0;
+      animation: pulseUnderline 2s infinite alternate;
+    }
+
+    @keyframes pulseUnderline {
+      0% { box-shadow: 0 0 5px var(--accent); }
+      100% { box-shadow: 0 0 15px var(--accent2); }
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+    }
+
+    ul li {
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      background: var(--card-bg);
+      border: 1px solid #444;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .contact-form button {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #000;
+      font-weight: bold;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      transform: scale(1.05);
+    }
+
+    /* 🎇 Animated floating lines */
+    .animated-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .line {
+      position: absolute;
+      width: 2px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, var(--accent));
+      animation: floatLine 8s linear infinite;
+    }
+
+    .line:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .line:nth-child(2) { left: 30%; animation-delay: 1s; }
+    .line:nth-child(3) { left: 50%; animation-delay: 2s; }
+    .line:nth-child(4) { left: 70%; animation-delay: 3s; }
+    .line:nth-child(5) { left: 90%; animation-delay: 4s; }
+
+    @keyframes floatLine {
+      0% { top: -100vh; opacity: 0.1; }
+      50% { opacity: 0.4; }
+      100% { top: 100vh; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="animated-bg">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <button class="toggle-btn" onclick="toggleTheme()">☀ / 🌙</button>
+    <h1>Jasdip Singh Virdi</h1>
+    <p class="typing" id="typing"></p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a B.Tech student in Electronics and Communication Engineering with a passion for front-end development, IoT projects, and continuous self-learning. I enjoy building modern web interfaces and solving real-world problems with tech.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Blind Stick Project</h3>
+      <p>IoT-based smart stick for visually impaired with haptic feedback, GPS, and water detection features.</p>
+    </div>
+    <div class="project-card">
+      <h3>Bluetooth LED Control</h3>
+      <p>Controlled LEDs and displayed sensor data using Arduino and Bluetooth module with real-time temperature monitoring.</p>
+    </div>
+    <div class="project-card">
+      <h3>Insultomanic Bot</h3>
+      <p>A Python bot that generates random voice-based insults using text-to-speech APIs for interactive fun.</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>B.Tech in Electronics and Communication Engineering</strong> – Rajiv Gandhi College of Engineering (2021–2025)</li>
+      <li><strong>HSC</strong> – Janata Mahavidyalaya (2019–2021)</li>
+      <li><strong>SSC</strong> – Chanda Public School (2019)</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Jasdip Singh Virdi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Typing effect
+    const typingElement = document.getElementById("typing");
+    const roles = ["Aspiring Web Developer", "B.Tech ECE", "Front-End Enthusiast"];
+    let roleIndex = 0;
+    let charIndex = 0;
+
+    function typeText() {
+      if (charIndex < roles[roleIndex].length) {
+        typingElement.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, 100);
+      } else {
+        setTimeout(eraseText, 2000);
+      }
+    }
+
+    function eraseText() {
+      if (charIndex > 0) {
+        typingElement.textContent = roles[roleIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(eraseText, 50);
+      } else {
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(typeText, 300);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(typeText, 500);
+    });
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+    }
+  </script>
+</body>
+</html>
